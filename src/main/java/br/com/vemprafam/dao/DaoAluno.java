@@ -64,7 +64,7 @@ public class DaoAluno {
 		}
 	}
 	public Aluno buscarPeloRa(int ra) {
-		String sql = "SELECT RA,NOME,DATANASCIMENTO,RRENDA FROM ALUNOS WHERE RA=?";
+		String sql = "SELECT RA,NOME,DATANASCIMENTO,RENDA FROM ALUNOS WHERE RA=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, ra);

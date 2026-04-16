@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.vemprafam.dao.DaoAluno;
 import br.com.vemprafam.pojo.Aluno;
+import br.com.vemprafam.pojo.Funcionario;
 
 @Controller
 @RequestMapping("/alunos")
@@ -41,5 +43,29 @@ public class AlunosController {
 		model.addAttribute("alunos", alunos);
 		return "alunos-list";
 	}
-
+	@GetMapping("/exclusao")
+	public String showDelete() {
+		return "delete-aluno";
+	}
+	@GetMapping("/delete")
+	public String delete(@RequestParam int ra) {
+		Aluno a = dao.buscarPeloRa(ra);
+		dao.delete(a);
+		return "alunos";
+	}
+	@GetMapping("/busca")
+	public String showBusca() {
+		return "buscar-aluno";
+	}
+	@GetMapping("/formUpdate")
+	public String formUpdate(@RequestParam int ra, Model model) {
+		Aluno a = dao.buscarPeloRa(ra);
+		model.addAttribute("aluno", a);
+		return "alterar-aluno";
+	}
+	@PostMapping("/update")
+	public String update(@ModelAttribute Aluno a) {
+		dao.update(a);
+		return "alunos";
+	}
 }
