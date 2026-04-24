@@ -13,3 +13,11 @@ create table Alunos(
   dataNascimento date,
   renda decimal(15,2),
   primary key(ra));
+  
+create table users(
+  username varchar(255),
+  password varchar(255),
+  enabled varchar(1),
+  primary key(username));
+  
+ 

@@ -2,6 +2,7 @@ package br.com.vemprafam.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,8 @@ import br.com.vemprafam.pojo.Funcionario;
 @Controller
 @RequestMapping("/funcionarios")
 public class FuncionariosController {
+	@Autowired
+	DaoFuncionario dao;
 	@GetMapping
 	public String showFuncHomeVazio(Model model) {
 		return "funcionarios";
@@ -31,7 +34,7 @@ public class FuncionariosController {
 		model.addAttribute("funcionario", f);
 		return "create-func";
 	}
-	DaoFuncionario dao = new DaoFuncionario();
+
 	@PostMapping
 	public String insert(@ModelAttribute Funcionario f) {
 		dao.insert(f);

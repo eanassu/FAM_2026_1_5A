@@ -9,21 +9,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.com.vemprafam.pojo.Aluno;
+import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import br.com.vemprafam.pojo.Aluno;
+@Repository
 public class DaoAluno {
 	private Connection conn;
-	private String url = "jdbc:hsqldb:hsql://localhost/";
-	private String user = "SA";
-	private String password = "";
 
 	public DaoAluno() {
-		if (conn == null) {
-			try {
-				conn = DriverManager.getConnection(url,user,password);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+	}
+
+	@Autowired
+	public DaoAluno(DataSource dataSource) {
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
