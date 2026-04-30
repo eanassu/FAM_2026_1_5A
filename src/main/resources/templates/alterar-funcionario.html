@@ -3,13 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Alteração</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/ui/1.14.2/jquery-ui.js"></script>
+<script>
+  $( function() {
+    $( "#dataAdmissao" ).datepicker({dateFormat:"dd/mm/yy",changeYear:true,changeMonth:true});
+  } );
+</script>
 </head>
 <body>
 <form action="#" th:action="@{/funcionarios/update}"
   th:object="${funcionario}" method="post">
 RE:<input type="text" th:field="*{re}"/><br/>
 Nome:<input type="text" th:field="*{nome}"/><br/>
-data de admissão<input type="text" th:field="*{dataAdmissao}"/><br/>
+data de admissão<input type="text" th:field="*{dataAdmissao}"
+  id='dataAdmissao'/><br/>
 salário:<input type="text" th:field="*{salario}"/><br/>
 <input type="submit" value="enviar"/>
 </form>

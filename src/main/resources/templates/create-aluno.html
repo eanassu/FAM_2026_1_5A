@@ -3,13 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Cadastro</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/ui/1.14.2/jquery-ui.js"></script>
+<script>
+  $( function() {
+    $( "#dataNascimento" ).datepicker({dateFormat:"dd/mm/yy",changeYear:true,changeMonth:true});
+  } );
+</script>
 </head>
 <body>
 <form action="#" th:action="@{/alunos}"
   th:object="${aluno}" method="post">
 RA:<input type="text" th:field="*{ra}"/><br/>
 Nome:<input type="text" th:field="*{nome}"/><br/>
-data de nascimento<input type="text" th:field="*{dataNascimento}"/><br/>
+data de nascimento<input type="text" th:field="*{dataNascimento}"
+  id='dataNascimento'/><br/>
 renda:<input type="text" th:field="*{renda}"/><br/>
 <input type="submit" value="enviar"/>
 </form>
